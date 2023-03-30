@@ -7,7 +7,7 @@ body {
 .score-board {
     display: flex;
     justify-content: space-between;
-    font-size: larger;
+    font-size: x-large;
     font-weight: bold;
 }
 
@@ -20,7 +20,8 @@ body {
     flex-direction: column;
     width: 300px;
     height: 300px;
-    border: 2px solid black;
+    border: 5px solid black;
+    border-radius: 10px;
 }
 
 .row {
@@ -31,5 +32,5 @@ body {
 
 .cell {
     flex: 1;
-    border: 1px solid black;
+    border: 2px solid black;
 }

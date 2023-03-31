@@ -1,19 +1,39 @@
-let GameBoard = [];
+// Module to setup GameBoard
+const gameBoardModule = (function() {
+    let gameBoard = [];
+    return {}
+})();
 
-const Player = (name, symbol = 'X') => {
+const displayControllerModule = (function() {
+    let testFunction = () => console.log("testing private function call inside of a module obj...")
+    return {testFunction}
+})();
+
+// Factory Function to create PlayerOne
+const createPlayer = (name, symbol = 'X') => {
     return {
         name: name,
         symbol: symbol
     }
 }
 
-const Me = Player("Mike")
-console.log(Me.symbol)
+const Me = createPlayer("PlayerOne")
+console.log(Me)
 
-const createComputerPlayer = (symbol = 'O') => {
+// Creates Computer Opponent
+const createComputerPlayer = (function() {
+    function create(symbol = 'O') {
     return {
+        name: "ComputerPlayer",
         symbol: symbol
-    }
+    };
 }
-let ComputerPlayer = createComputerPlayer()
-console.log(ComputerPlayer.symbol)
+    return {
+        create: create
+    };
+})();
+
+
+
+let ComputerPlayer = createComputerPlayer.create()
+console.log(ComputerPlayer)

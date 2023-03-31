@@ -1,11 +1,19 @@
 let GameBoard = [];
 
-const Player = (name) => {
-    return {name}
+const Player = (name, symbol = 'X') => {
+    return {
+        name: name,
+        symbol: symbol
+    }
 }
 
 const Me = Player("Mike")
-const Computer = Player("Computer")
+console.log(Me.symbol)
 
-console.log(Me)
-console.log(Computer)
+const createComputerPlayer = (symbol = 'O') => {
+    return {
+        symbol: symbol
+    }
+}
+let ComputerPlayer = createComputerPlayer()
+console.log(ComputerPlayer.symbol)

@@ -37,7 +37,7 @@ const gameBoardModule = (function () {
         const box = document.querySelectorAll(".cell")
         box.forEach(box => {
             box.addEventListener('click', e => {
-                if (player1.turn === true && e.target.textContent == '') {
+                if (player1.turn && e.target.textContent == '') {
                     makeMove(e.target.id, player1.symbol);
                     box.textContent = player1.symbol;
                     box.style.color = '#EE6C4D'
@@ -46,7 +46,7 @@ const gameBoardModule = (function () {
                     if (checkForWinner(player1.symbol)) {
                         console.log(player1.name + " wins!")
                     }
-                } else if (player2.turn == true && e.target.textContent == '' && player2.ai == false) {
+                } else if (player2.turn && e.target.textContent == '' && player2.ai == false) {
                     makeMove(e.target.id, player2.symbol);
                     box.textContent = player2.symbol;
                     box.style.color = '#98C1D9'
@@ -65,30 +65,30 @@ const gameBoardModule = (function () {
     return { makeMove, checkForWinner, playerTurn, player1, player2 }
 })();
 
-const renderArrayToScreen = (() => {
-    const cellBox = document.querySelectorAll(".cell");
-    cellBox[0].textContent = gameBoardModule.gameBoard;
-    return {}
-})();
-
-
-
-
-// // Creates Computer Opponent
-// const createComputerPlayer = (() => {
-//     function create(symbol = 'O') {
-//     return {
-//         name: "ComputerPlayer",
-//         symbol: symbol
-//     };
-// }
-//     return {
-//         create: create
-//     };
+// const renderArrayToScreen = (() => {
+//     const cellBox = document.querySelectorAll(".cell");
+//     cellBox[0].textContent = gameBoardModule.gameBoard;
+//     return {}
 // })();
 
 
 
-// let ComputerPlayer = createComputerPlayer.create()
-// console.log(ComputerPlayer)
-renderArrayToScreen;
+
+// // // Creates Computer Opponent
+// // const createComputerPlayer = (() => {
+// //     function create(symbol = 'O') {
+// //     return {
+// //         name: "ComputerPlayer",
+// //         symbol: symbol
+// //     };
+// // }
+// //     return {
+// //         create: create
+// //     };
+// // })();
+
+
+
+// // let ComputerPlayer = createComputerPlayer.create()
+// // console.log(ComputerPlayer)
+// renderArrayToScreen;

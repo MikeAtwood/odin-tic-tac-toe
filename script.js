@@ -30,7 +30,7 @@ const gameBoardModule = (function () {
     function makeMove(index, symbol) {
         gameBoard[index] = symbol;
     }
-
+    
 
     // Function for making a move
     const playerTurn = (function () {
@@ -58,9 +58,10 @@ const gameBoardModule = (function () {
                 } else {
                     return;
                 }
+                checkForWinner()
             });
         })
-
+        return { box }
     })();
     return { makeMove, checkForWinner, playerTurn, player1, player2 }
 })();

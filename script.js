@@ -58,7 +58,6 @@ const gameBoardModule = (function () {
                 } else {
                     return;
                 }
-                checkForWinner()
             });
         })
         return { box }

@@ -21,6 +21,7 @@ const gameBoardModule = (function () {
         for (let i = 0; i < winningCombos.length; i++) {
             const [a, b, c] = winningCombos[i];
             if (gameBoard[a] === symbol && gameBoard[b] === symbol && gameBoard[c] === symbol) {
+                console.log("Winning combination found:", [a, b, c])
                 return true
             }
         }
@@ -29,11 +30,14 @@ const gameBoardModule = (function () {
 
     function makeMove(index, symbol) {
         gameBoard[index] = symbol;
+        if(checkForWinner(symbol)) {
+            console.log(symbol + " wins!")
+        }
     }
     
 
     // Function for making a move
-    const playerTurn = (function () {
+    const playerTurn = () => {
         const box = document.querySelectorAll(".cell")
         box.forEach(box => {
             box.addEventListener('click', e => {
@@ -43,8 +47,8 @@ const gameBoardModule = (function () {
                     box.style.color = '#EE6C4D'
                     player1.turn = false;
                     player2.turn = true;
-                    if (checkForWinner(player1.symbol)) {
-                        console.log(player1.name + " wins!")
+                    if (checkForWinner == true) {
+                        console.log("winner")
                     }
                 } else if (player2.turn && e.target.textContent == '' && player2.ai == false) {
                     makeMove(e.target.id, player2.symbol);
@@ -52,43 +56,17 @@ const gameBoardModule = (function () {
                     box.style.color = '#98C1D9'
                     player1.turn = true;
                     player2.turn = false;
-                    if (checkForWinner(player2.symbol)) {
-                        console.log(player2.name + " wins!")
-                    }
+                    checkForWinner()
                 } else {
                     return;
                 }
             });
         })
         return { box }
-    })();
-    return { makeMove, checkForWinner, playerTurn, player1, player2 }
+    };
+    return { makeMove, checkForWinner, playerTurn, player1, player2, gameBoard }
 })();
 
-// const renderArrayToScreen = (() => {
-//     const cellBox = document.querySelectorAll(".cell");
-//     cellBox[0].textContent = gameBoardModule.gameBoard;
-//     return {}
-// })();
-
-
-
-
-// // // Creates Computer Opponent
-// // const createComputerPlayer = (() => {
-// //     function create(symbol = 'O') {
-// //     return {
-// //         name: "ComputerPlayer",
-// //         symbol: symbol
-// //     };
-// // }
-// //     return {
-// //         create: create
-// //     };
-// // })();
-
-
-
-// // let ComputerPlayer = createComputerPlayer.create()
-// // console.log(ComputerPlayer)
-// renderArrayToScreen;
+const game = gameBoardModule;
+game.playerTurn();
+game.makeMove()
